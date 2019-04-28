@@ -2,9 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import CalendarHeatmap from "react-calendar-heatmap";
 import ReactTooltip from "react-tooltip";
-
+import "react-calendar-heatmap/dist/styles.css";
 import "./graph.css";
+import ColorPicker from "./ColorPicker";
+import styled from "styled-components";
 // import "./styles.css";
+
+const UserGraph = styled(CalendarHeatmap)``;
 
 const today = new Date();
 
@@ -15,6 +19,7 @@ function Graph() {
       count: getRandomInt(1, 3)
     };
   });
+
   return (
     <div>
       <CalendarHeatmap
@@ -38,6 +43,7 @@ function Graph() {
         onClick={value => alert(`Clicked on value with count: ${value.count}`)}
       />
       <ReactTooltip />
+      <ColorPicker />
     </div>
   );
 }
