@@ -21,10 +21,10 @@ const SignUp = () => {
   return (
     <div className="sign-up-form">
       <div>
-        <button className="sign-up-button" onClick={this.toggle}>
+        <button className="sign-up-button" onClick={toggle}>
           Sign Up
         </button>
-        <Modal isOpen={modal} toggle={toggle} className={this.props.className}>
+        <Modal isOpen={modal} toggle={toggle} className={className}>
           <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
           <ModalBody>
             <form className="sign-up-form">
