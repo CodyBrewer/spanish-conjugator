@@ -25,7 +25,7 @@ const Login = props => {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log("button working");
+
     // Axios.post("http://localhost:3333/api/login", user)
     axios
       .post("https://glacial-hamlet-47910.herokuapp.com/api/login", {
@@ -33,16 +33,17 @@ const Login = props => {
         password: password
       })
       .then(res => {
-        console.log(res.data);
-        console.log("data ", res.data.your_token);
-        localStorage.setItem("jwt", res.data.your_token);
-        const token = localStorage.getItem("jwt"); // setLoggedIn(true)
-      })
-      .then(res => {
-        auth.login(() => {
-          routeProps.history.push("/learn");
-        });
+        if (res.data) {
+          console.log(res.data);
+          console.log("data ", res.data.your_token);
+          localStorage.setItem("jwt", res.data.your_token);
+          auth.login(() => {
+            routeProps.history.push("/learn");
+          });
+          localStorage.setItem("isAuth", auth.authenticated);
+        }
         toggle();
+        // setLoggedIn(true)
       })
       .catch(error => {
         console.log("Axios Error Msg: ", error);
@@ -99,6 +100,7 @@ const Login = props => {
                 />{" "}
                 remember me <br />
               </div>
+              {/* <button className="form-button" onClick={clickHandler}> */}
               <button className="form-button">Login</button>
             </form>
           </ModalBody>
