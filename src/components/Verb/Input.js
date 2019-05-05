@@ -61,13 +61,13 @@ const Input = (props) => {
 		setValue(value + accent);
 	};
 
-	const handleRefresh = () => {
-		const { randomize } = props;
-		setValue('');
-		setHelperText(null);
-		setCorrect(false);
-		randomize();
-	};
+  const handleRefresh = () => {
+    // const { randomize } = props;
+    setValue("");
+    setHelperText(null);
+    setCorrect(false);
+    // randomize();
+  };
 
 	const addStreak = () => {
 		const { count } = props;
@@ -145,13 +145,13 @@ const Input = (props) => {
 };
 
 Input.propTypes = {
-	randomPerson: PropTypes.string,
-	addCounter: PropTypes.func,
-	resetCounter: PropTypes.func,
-	data: PropTypes.array,
-	randomVerb: PropTypes.object,
-	randomize: PropTypes.func,
-	count: PropTypes.number
+  randomPerson: PropTypes.string,
+  addCounter: PropTypes.func,
+  resetCounter: PropTypes.func,
+  data: PropTypes.array,
+  randomVerb: PropTypes.object,
+  // randomize: PropTypes.func,
+  count: PropTypes.number
 };
 
 export default Input;

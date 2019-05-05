@@ -23,30 +23,37 @@ const Login = (props) => {
 	const submitHandler = (e) => {
 		e.preventDefault();
 
-		// Axios.post("http://localhost:3333/api/login", user)
-		axios
-			.post('https://glacial-hamlet-47910.herokuapp.com/api/login', {
-				username: username,
-				password: password
-			})
-			.then((res) => {
-				console.log(res.data);
-				console.log('data ', res.data.your_token);
-				localStorage.setItem('jwt', res.data.your_token);
-				// setLoggedIn(true)
-			})
-			.catch((error) => {
-				console.log('Axios Error Msg: ', error);
-			});
-	};
+    // Axios.post("http://localhost:3333/api/login", user)
+    axios
+      .post("https://glacial-hamlet-47910.herokuapp.com/api/login", {
+        username: username,
+        password: password
+      })
+      .then(res => {
+        if (res.data) {
+          console.log(res.data);
+          console.log("data ", res.data.your_token);
+          localStorage.setItem("jwt", res.data.your_token);
+          auth.login(() => {
+            routeProps.history.push("/learn");
+          });
+          localStorage.setItem("isAuth", auth.authenticated);
+        }
+        toggle();
+        // setLoggedIn(true)
+      })
+      .catch(error => {
+        console.log("Axios Error Msg: ", error);
+      });
+  };
 
-	const clickHandler = (e) => {
-		e.preventDefault();
-		auth.login(() => {
-			routeProps.history.push('/learn');
-		});
-		toggle();
-	};
+  // const clickHandler = e => {
+  //   e.preventDefault();
+  //   auth.login(() => {
+  //     routeProps.history.push("/learn");
+  //   });
+  //   toggle();
+  // };
 
 	function handlePassword(e) {
 		setPassword(e.target.value);
