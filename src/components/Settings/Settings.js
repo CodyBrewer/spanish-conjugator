@@ -5,12 +5,6 @@ import VerbTenses from "./VerbTenses";
 import NumberPerson from "./VerbNumberPerson";
 
 const Settings = props => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     updateSettings: false,
-  //   };
-  // }
   const [updateSettings, setUpdateSettings] = useState(false);
 
   const changeSettings = event => {
