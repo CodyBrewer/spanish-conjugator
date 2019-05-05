@@ -1,10 +1,10 @@
-import React from 'react';
-import './checkmark.css';
-import PropTypes from 'prop-types';
+import React from "react";
+import "./checkmark.css";
+import PropTypes from "prop-types";
 
 const Checkmark = props => {
-  const hide = 'checkmark-hide';
-  const display = 'checkmark-display';
+  const hide = "checkmark-hide";
+  const display = "checkmark-display";
   const { correct } = props;
   return (
     <div className={correct ? display : hide}>
@@ -31,7 +31,7 @@ const Checkmark = props => {
 };
 
 Checkmark.propTypes = {
-  correct: PropTypes.bool,
+  correct: PropTypes.bool
 };
 
 export default Checkmark;
