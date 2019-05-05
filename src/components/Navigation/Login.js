@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import auth from "../auth/auth";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -9,6 +9,7 @@ import {
 } from "../../Context/Store";
 import { useRouter } from "../../hooks/useRouter";
 import { RouterContext } from "../../Context/CustomBrowserRouter";
+import { Button, Form, Input } from "./Navigation";
 
 // import jwt_decode from "jwt";
 
@@ -68,41 +69,31 @@ const Login = props => {
   return (
     <div className="login-form">
       <div>
-        <button className="log-in-button" onClick={toggle}>
-          Login
-        </button>
+        <Button onClick={toggle}>Login</Button>
         <Modal isOpen={modal} toggle={toggle} className={props.className}>
           <ModalHeader toggle={toggle}>Login</ModalHeader>
           <ModalBody>
-            <form className="sign-up-form" onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler}>
               <span>Username</span>
-              <input
-                className="sign-up-input"
+              <Input
                 name="username"
                 onChange={handleUsername}
                 value={username}
                 placeholder="username"
               />
               <span>Password</span>
-              <input
+              <Input
                 type="password"
-                className="sign-up-input"
                 name="password"
                 onChange={handlePassword}
                 value={password}
                 placeholder="password"
               />
               <div>
-                <input
-                  className="sign-up-input"
-                  type="checkbox"
-                  name="remeber me"
-                />{" "}
-                remember me <br />
+                <Input type="checkbox" name="remember me" /> remember me <br />
               </div>
-              {/* <button className="form-button" onClick={clickHandler}> */}
-              <button className="form-button">Login</button>
-            </form>
+              <Button>Login</Button>
+            </Form>
           </ModalBody>
           <ModalFooter />
         </Modal>

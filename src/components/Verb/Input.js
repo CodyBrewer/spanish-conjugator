@@ -13,11 +13,12 @@ const Input = props => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [helperText, setHelperText] = useState(null);
-  const [correct, setCorrect] = useState(false);
+  // const [ correct, setCorrect ] = useState(false);
+  const [level, setLevel] = useState(0);
   const refReward = useRef(null);
 
   const handleChange = event => {
-    setCorrect(false);
+    props.setCorrect(false);
     setValue(event.target.value);
   };
 
@@ -33,9 +34,9 @@ const Input = props => {
       addCounter();
       setCorrectAnswers(correctAnswers + 1);
       setTotalAnswers(totalAnswers + 1);
-      // alert('Correct!')
+      alert("Correct!");
       handleRefresh();
-      setCorrect(true);
+      props.setCorrect(true);
       addStreak();
     } else if (randomPerson[1] !== userInput) {
       setHelperText(
@@ -74,7 +75,7 @@ const Input = props => {
     // const { randomize } = props;
     setValue("");
     setHelperText(null);
-    setCorrect(false);
+    props.setCorrect(false);
     // randomize();
   };
 
@@ -140,7 +141,7 @@ const Input = props => {
             onChange={handleChange}
             className="input"
           />
-          <Checkmark correct={correct} />
+          <Checkmark correct={props.correct} />
         </div>
         <div className="text-under-input">
           <AccentButtons addAccent={addAccent} />
