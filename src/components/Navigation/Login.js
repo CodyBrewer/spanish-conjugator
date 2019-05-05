@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import auth from "../auth/auth";
@@ -11,32 +10,22 @@ import {
 import { useRouter } from "../../hooks/useRouter";
 import { RouterContext } from "../../Context/CustomBrowserRouter";
 import { Button, Form, Input } from "./Navigation";
-=======
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import auth from '../auth/auth';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { ModalContext, UsernameContext, PasswordContext } from '../../Context/Store';
-import { useRouter } from '../../hooks/useRouter';
-import { RouterContext } from '../../Context/CustomBrowserRouter';
-import { Button, Form, Input } from './Navigation';
->>>>>>> 429b726d6b98692454931c060a4235812d890e46
 
 // import jwt_decode from "jwt";
 
-const Login = (props) => {
-	const [ modal, setModal ] = useContext(ModalContext);
-	const [ username, setUsername ] = useContext(UsernameContext);
-	const [ password, setPassword ] = useContext(PasswordContext);
-	const [ loggedIn, setLoggedIn ] = useState(false);
-	const routeProps = useContext(RouterContext);
+const Login = props => {
+  const [modal, setModal] = useContext(ModalContext);
+  const [username, setUsername] = useContext(UsernameContext);
+  const [password, setPassword] = useContext(PasswordContext);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const routeProps = useContext(RouterContext);
 
-	const toggle = () => {
-		setModal(!modal);
-	};
+  const toggle = () => {
+    setModal(!modal);
+  };
 
-	const submitHandler = (e) => {
-		e.preventDefault();
+  const submitHandler = e => {
+    e.preventDefault();
 
     // Axios.post("http://localhost:3333/api/login", user)
     axios
@@ -70,14 +59,13 @@ const Login = (props) => {
   //   toggle();
   // };
 
-	function handlePassword(e) {
-		setPassword(e.target.value);
-	}
-	function handleUsername(e) {
-		setUsername(e.target.value);
-	}
+  function handlePassword(e) {
+    setPassword(e.target.value);
+  }
+  function handleUsername(e) {
+    setUsername(e.target.value);
+  }
 
-<<<<<<< HEAD
   return (
     <div className="login-form">
       <div>
@@ -112,37 +100,6 @@ const Login = (props) => {
       </div>
     </div>
   );
-=======
-	return (
-		<div className="login-form">
-			<div>
-				<Button onClick={toggle}>Login</Button>
-				<Modal isOpen={modal} toggle={toggle} className={props.className}>
-					<ModalHeader toggle={toggle}>Login</ModalHeader>
-					<ModalBody>
-						<Form onSubmit={submitHandler}>
-							<span>Username</span>
-							<Input name="username" onChange={handleUsername} value={username} placeholder="username" />
-							<span>Password</span>
-							<Input
-								type="password"
-								name="password"
-								onChange={handlePassword}
-								value={password}
-								placeholder="password"
-							/>
-							<div>
-								<Input type="checkbox" name="remember me" /> remember me <br />
-							</div>
-							<Button onClick={clickHandler}>Login</Button>
-						</Form>
-					</ModalBody>
-					<ModalFooter />
-				</Modal>
-			</div>
-		</div>
-	);
->>>>>>> 429b726d6b98692454931c060a4235812d890e46
 };
 
 export default Login;
