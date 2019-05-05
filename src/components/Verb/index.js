@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import "../../app.css";
 import { VerbContext } from "../../Context/Store";
@@ -9,9 +8,8 @@ import { VerbTenseFilters } from "../Filters/VerbTensesFilters";
 import Input from "./Input";
 import { UsernameContext } from "../../Context/Store";
 
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 // import Filter, { FilterLevels } from "../Filters/Filter";
 
@@ -82,12 +80,9 @@ const Verb = props => {
     console.log("level is", level);
   });
 
-	useEffect(
-		() => {
-			randomize();
-		},
-		[ correct ]
-	);
+  useEffect(() => {
+    randomize();
+  }, [correct]);
 
   const randomize = () => {
     setRandomVerb(verbData[Math.floor(Math.random() * verbData.length)]);
@@ -113,29 +108,29 @@ const Verb = props => {
   //   setRandomPerson(randomPerson);
   // };
 
-	const handleRefresh = () => {
-		setCorrect(false);
-		setRandomVerb({});
-		setRandomPerson([]);
-		randomize();
-	};
+  const handleRefresh = () => {
+    setCorrect(false);
+    setRandomVerb({});
+    setRandomPerson([]);
+    randomize();
+  };
 
-	const addCounter = () => {
-		setCount(count + 1);
-	};
+  const addCounter = () => {
+    setCount(count + 1);
+  };
 
-	const resetCounter = () => {
-		setCount(0);
-	};
+  const resetCounter = () => {
+    setCount(0);
+  };
 
-	const updateNumPerson = (event) => {
-		setNumberPerson(event.target.value);
-	};
+  const updateNumPerson = event => {
+    setNumberPerson(event.target.value);
+  };
 
-	const updateVerbTenses = (event) => {
-		setLevel(event.target.value);
-		handleRefresh();
-	};
+  const updateVerbTenses = event => {
+    setLevel(event.target.value);
+    handleRefresh();
+  };
 
   //////********************** */LEVEL DATA FILTERING HAPPENS BELOW HERE *******************************////////
   const LevelOne = verbData.filter(
@@ -217,9 +212,11 @@ const Verb = props => {
           data={verbData}
           randomPerson={randomPerson}
           randomVerb={randomVerb}
-          // randomize={randomize}
+          randomize={randomize}
           addCounter={addCounter}
           resetCounter={resetCounter}
+          correct={correct}
+          setCorrect={setCorrect}
           count={count}
         />
       ) : null}
