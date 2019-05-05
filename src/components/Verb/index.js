@@ -212,9 +212,11 @@ const Verb = props => {
           data={verbData}
           randomPerson={randomPerson}
           randomVerb={randomVerb}
-          // randomize={randomize}
+          randomize={randomize}
           addCounter={addCounter}
           resetCounter={resetCounter}
+          correct={correct}
+          setCorrect={setCorrect}
           count={count}
         />
       ) : null}

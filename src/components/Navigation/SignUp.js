@@ -55,61 +55,58 @@ const SignUp = props => {
     setRegister(!register);
   };
 
-  function handleUsername(e) {
-    setUsername(e.target.value);
-  }
-  function handlePassword(e) {
-    setPassword(e.target.value);
-  }
-  useEffect(() => {
-    console.log("username:", username);
-    console.log("password:", password);
-  }, []);
+	function handleUsername(e) {
+		setUsername(e.target.value);
+	}
+	function handlePassword(e) {
+		setPassword(e.target.value);
+	}
+	useEffect(() => {
+		console.log('username:', username);
+		console.log('password:', password);
+	}, []);
 
-  return (
-    <div className="sign-up-form">
-      <div>
-        <button className="sign-up-button" onClick={toggle}>
-          Sign Up
-        </button>
-        <Modal isOpen={register} toggle={toggle} className={props.className}>
-          <ModalHeader toggle={toggle}>Sign Up</ModalHeader>
-          <ModalBody>
-            <form className="sign-up-form" onSubmit={submitHandler}>
-              <span>Username</span>
-              <input
-                tpye="username"
-                className="sign-up-input"
-                name="username"
-                value={username}
-                onChange={handleUsername}
-                placeholder="Username"
-              />
-              <span>password</span>
-              <input
-                type="password"
-                className="sign-up-input"
-                name="password"
-                value={password}
-                onChange={handlePassword}
-                placeholder="Password"
-              />
-              <span>Retype Password</span>
-              <input
-                type="password"
-                className="sign-up-input"
-                name="confirmationPassword"
-                validate={{ match: { value: "password" } }}
-                placeholder="Retype password"
-              />
-              <button className="form-button">Register</button>
-            </form>
-          </ModalBody>
-          <ModalFooter />
-        </Modal>
-      </div>
-    </div>
-  );
+	return (
+		<div className="sign-up-form">
+			<div>
+				<Button alt onClick={toggle}>
+					Sign Up
+				</Button>
+				<Modal isOpen={register} toggle={toggle} className={props.className}>
+					<ModalHeader toggle={toggle}>Sign Up</ModalHeader>
+					<ModalBody>
+						<Form onSubmit={submitHandler}>
+							<span>Username</span>
+							<Input
+								type="username"
+								name="username"
+								value={username}
+								onChange={handleUsername}
+								placeholder="Username"
+							/>
+							<span>password</span>
+							<Input
+								type="password"
+								name="password"
+								value={password}
+								onChange={handlePassword}
+								placeholder="Password"
+							/>
+							<span>Retype Password</span>
+							<Input
+								type="password"
+								name="confirmationPassword"
+								validate={{ match: { value: 'password' } }}
+								placeholder="Retype password"
+							/>
+							<Button>Register</Button>
+						</Form>
+					</ModalBody>
+					<ModalFooter />
+				</Modal>
+			</div>
+		</div>
+	);
 };
 
 export default SignUp;
