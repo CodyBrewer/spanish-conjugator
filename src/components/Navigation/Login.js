@@ -16,7 +16,6 @@ const Login = props => {
   const [modal, setModal] = useContext(ModalContext);
   const [username, setUsername] = useContext(UsernameContext);
   const [password, setPassword] = useContext(PasswordContext);
-  const [loggedIn, setLoggedIn] = useState(false);
   const routeProps = useContext(RouterContext);
 
   const toggle = () => {
