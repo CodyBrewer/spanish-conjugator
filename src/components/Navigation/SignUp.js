@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import auth from "../auth/auth";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import {
   ModalContext,
@@ -7,12 +8,14 @@ import {
   PasswordContext,
   RegisterContext
 } from "../../Context/Store";
+import { RouterContext } from "../../Context/CustomBrowserRouter";
 
 const SignUp = props => {
   const [register, setRegister] = useContext(RegisterContext);
   const [username, setUsername] = useContext(UsernameContext);
   const [password, setPassword] = useContext(PasswordContext);
   const [signedUp, setSignedUp] = useState(false);
+  const routeProps = useContext(RouterContext);
 
   const submitHandler = e => {
     e.preventDefault();
@@ -24,6 +27,19 @@ const SignUp = props => {
       .then(res => {
         setSignedUp(true);
         console.log("res ", res);
+      })
+      .then(res => {
+        if (res.data) {
+          console.log(res.data);
+          console.log("data ", res.data.your_token);
+          localStorage.setItem("jwt", res.data.your_token);
+          auth.login(() => {
+            routeProps.history.push("/learn");
+          });
+          localStorage.setItem("isAuth", auth.authenticated);
+        }
+        toggle();
+        // setLoggedIn(true)
       })
       .catch(error => {
         console.log("Error signing up: ", error);
