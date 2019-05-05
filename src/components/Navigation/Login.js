@@ -16,7 +16,6 @@ const Login = (props) => {
 	const [ loggedIn, setLoggedIn ] = useState(false);
 	const routeProps = useContext(RouterContext);
 
-
 	const toggle = () => {
 		setModal(!modal);
 	};

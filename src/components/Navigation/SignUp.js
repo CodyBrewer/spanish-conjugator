@@ -1,59 +1,39 @@
-import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
-import auth from "../auth/auth";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import {
-  ModalContext,
-  UsernameContext,
-  PasswordContext,
-  RegisterContext
-} from "../../Context/Store";
-import { RouterContext } from "../../Context/CustomBrowserRouter";
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { ModalContext, UsernameContext, PasswordContext, RegisterContext } from '../../Context/Store';
+import { Button, Form, Input } from './Navigation';
 
-const SignUp = props => {
-  const [register, setRegister] = useContext(RegisterContext);
-  const [username, setUsername] = useContext(UsernameContext);
-  const [password, setPassword] = useContext(PasswordContext);
-  const [signedUp, setSignedUp] = useState(false);
-  const routeProps = useContext(RouterContext);
+const SignUp = (props) => {
+	const [ register, setRegister ] = useContext(RegisterContext);
+	const [ username, setUsername ] = useContext(UsernameContext);
+	const [ password, setPassword ] = useContext(PasswordContext);
+	const [ signedUp, setSignedUp ] = useState(false);
 
-  const submitHandler = e => {
-    e.preventDefault();
-    axios
-      .post("https://glacial-hamlet-47910.herokuapp.com/api/register", {
-        username: username,
-        password: password
-      })
-      .then(res => {
-        setSignedUp(true);
-        console.log("res ", res);
-      })
-      .then(res => {
-        if (res.data) {
-          console.log(res.data);
-          console.log("data ", res.data.your_token);
-          localStorage.setItem("jwt", res.data.your_token);
-          auth.login(() => {
-            routeProps.history.push("/learn");
-          });
-          localStorage.setItem("isAuth", auth.authenticated);
-        }
-        toggle();
-        // setLoggedIn(true)
-      })
-      .catch(error => {
-        console.log("Error signing up: ", error);
-        // console.log(user);
-      });
-  };
-  //   useEffect(() => {
-  //     return () => {
-  //       console.log(user);
-  //     };
-  //   }, [user]);
-  const toggle = () => {
-    setRegister(!register);
-  };
+	const submitHandler = (e) => {
+		e.preventDefault();
+		axios
+			.post('https://glacial-hamlet-47910.herokuapp.com/api/register', {
+				username: username,
+				password: password
+			})
+			.then((res) => {
+				setSignedUp(true);
+				console.log('res ', res);
+			})
+			.catch((error) => {
+				console.log('Error signing up: ', error);
+				// console.log(user);
+			});
+	};
+	//   useEffect(() => {
+	//     return () => {
+	//       console.log(user);
+	//     };
+	//   }, [user]);
+	const toggle = () => {
+		setRegister(!register);
+	};
 
 	function handleUsername(e) {
 		setUsername(e.target.value);
