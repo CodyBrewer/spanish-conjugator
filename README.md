@@ -30,3 +30,5 @@ https://glacial-hamlet-47910.herokuapp.com/api/conjugator
 Illustrations from https://undraw.co
 
 Forked from https://github.com/blkfltchr/spanish-conjugator
+
+Site Live: https://myconjugator.com/
